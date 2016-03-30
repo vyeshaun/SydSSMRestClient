@@ -2,9 +2,9 @@
 <html>
    <head>
    	<link rel="stylesheet" type="text/css" href="Layout.css">
-     <script type="text/javascript" src="jquery-1.6.4.js"></script>
+     <script type="text/javascript" src="jquery-1.6.4.min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-     <script src="new.js"></script>   
+     <script src="mydemo.js"></script>   
    </head>
 
    <body>	
@@ -22,17 +22,91 @@
 			</ul>
    		</div>
    		<div id="DeviceState">
-   			<h1>DEVICE LIST</h1>   		
-   			<h2>DEVICE: Astreo A-002</h2>
-      		<h3>Device State</h3>
-     			<div id="state" class="status">... Loading ...</div>
-     						<div id="operationalMenu">
+   			<h3>Operational Overview</h3>
+   			<img src="images\red-orange-green.png" alt="red-orange-green.png">  
+   		</div>		
+      		<div id="devicegrid" class="DeviceTable" >
+      			<form>
+                <table >
+                    <tr>
+                        <td>
+                            Device ID
+                        </td>
+                        <td >
+                            Device IP
+                        </td>
+                        <td>
+                            Device Status
+                        </td>
+                        <td>
+                            Device Functions
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <input type="radio" name="DeviceID" value="A-002" checked><p>A-002</p>
+                        </td>
+                        <td>
+							<p>192.168.204.45</p>
+                        </td>
+                        <td>
+ 							<div id="state" class="status">... Loading ...</div>
+                        </td>
+                        <td>
+							<button class="MainButton" onclick="JSONTest()">EnterEMS</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+							<input type="radio" name="DeviceID" value="G-002"><p>G-002</p>
+                        </td>
+                        <td>
+                            <p>192.168.204.46</p>
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+     						<button class="MainButton" onclick="javascript:.submmit2();">Set Out Of Service</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <input type="radio" name="DeviceID" value="A-003"><p>A-003</p>
+                        </td>
+                        <td>
+                            <p>192.168.204.47</p>
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+     						<button class="MainButton" onclick="javascript:.submmit3();">Bring Into Service</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <input type="radio" name="DeviceID" value="G-003"><p>G-003</p>
+                        </td>
+                        <td>
+                            <p>192.168.204.48</p>
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            <button class="MainButton" onclick="javascript:.submmit4();">Get Alarms</button>
+                        </td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+         					<div id="operationalMenu">
      							<button class="MainButton" onclick="JSONTest()">EnterEMS</button>
      							<button class="MainButton" onclick="javascript:.submmit2();">Set Out Of Service</button>
      							<button class="MainButton" onclick="javascript:.submmit3();">Bring Into Service</button>
 								<button class="MainButton" onclick="javascript:.submmit4();">Get Alarms</button>
      						</div>
-      	</div>
      <!--Wrapper End-->
     </div>
    </body>
