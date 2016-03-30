@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>contains demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ 
+<div>high</div>
+<div>low</div>
+
+
+ 
+<script>
+$('div:contains("high")').css('background-color', 'red');
+$('div:contains("low")').css('background-color', 'green');
+</script>
+ 
+</body>
+</html>
