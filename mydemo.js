@@ -47,7 +47,7 @@ function StateRequest()
 	
 	//the request and url
 	var xmlHttp = new XMLHttpRequest();
-	var theUrl = "http://192.168.204.47:8080/tvm/state/1.0/";
+	var theUrl = "http://192.168.204.45:8080/tvm/state/1.0/";
 	
 	//The open asynchronous call (as it is set to true), which is needed for the callback 
 	// ready state change event handler
@@ -112,8 +112,8 @@ function StateRequest()
 				statusInformation = "No Response"; 			
 		}
 	//The element to be updated with specified string and colour
-	document.getElementById('state').style.backgroundColor = theBackground;
-	document.getElementById('state').innerHTML = statusInformation;
+	document.getElementById('1-state').style.backgroundColor = theBackground;
+	document.getElementById('1-state').innerHTML = statusInformation;
 	
 	};
 	

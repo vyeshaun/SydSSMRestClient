@@ -42,7 +42,7 @@ body, html {
 	float: left;
 	width: 1080px;
 	height: 40px;
-	background:#52BAFF;
+	background:#cceeff;
 	position: relative;
 	text-align:center;
 	margin-top: 15px;
@@ -95,7 +95,7 @@ body, html {
 }.DeviceTable tr:hover td{
 	
 }
-.DeviceTable tr:nth-child(odd){ background-color:#2cb5f4; }
+.DeviceTable tr:nth-child(odd){ background-color:#e6f7ff; }
 .DeviceTable tr:nth-child(even)    { background-color:#ffffff; }.DeviceTable td{
 	vertical-align:middle;
 	
@@ -148,7 +148,7 @@ body, html {
     background: #FFBE26;
     clear: both;
 }
-#state{
+#1-state{
 	float: left;
 	width: 150px;
 	height:20px;
