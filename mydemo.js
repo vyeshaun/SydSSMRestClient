@@ -139,4 +139,3 @@ setInterval(StateRequest, 5000);
 	//    	.innerHTML = xmlHttp.responseText;
   //  },3000);
     
-$('.div:contains("\"degraded"\":true,")').css('background-color', 'orange');

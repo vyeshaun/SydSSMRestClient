@@ -3,7 +3,7 @@
    <head>
    	<link rel="stylesheet" type="text/css" href="Layout.css">
      <script type="text/javascript" src="jquery-1.6.4.min.js"></script>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	 <script type="text/javascript" src="sortable.js"></script>
      <script src="mydemo.js"></script>   
    </head>
 
@@ -25,20 +25,20 @@
    			<h3>Operational Overview</h3>
    			<img src="images\red-orange-green.png" alt="red-orange-green.png">  
    		</div>		
-      		<div id="devicegrid" class="DeviceTable" >
-                <table >
+      		<div id="devicegrid" class="DeviceTable">
+                <table id="DeviceListTable" class="sortable">
                     <tr>
                         <th id="Hdeviceid">
-                            Device ID
+                            DEVICE ID
                         </th>
                         <th id="Hdeviceip">
-                            Device IP
+                            DEVICE IP
                         </th>
                         <th id="Hdevicestate">
-                            Device Status
+                            DEVICE STATUS
                         </th>
                         <th id="Hdevicefunctions">
-                            Device Functions
+                            DEVICE FUNCTIONS
                         </th>
                     </tr>
                     <tr>
@@ -49,6 +49,7 @@
 							<p>192.168.204.45</p>
                         </td>
                         <td id="1-state">
+                        	<p>Waiting...</p>
                         </td>
                         <td>
 							<button class="MainButton" onclick="JSONTest()">EnterEMS</button>
