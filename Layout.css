@@ -15,10 +15,18 @@ body, html {
 
 #header {
     float: left;
-    height: 75px;
+    height: auto;
     width: 1080px;
-    background: #ff9900
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0;
     text-align: center;
+    position:relative;
+	background: #e5e3da; /* Old browsers */
+	background: -moz-linear-gradient(top,  #e5e3da 0%, #e5c839 26%, #fcaf32 62%, #fcaf32 62%, #fcaf32 83%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #e5e3da 0%,#e5c839 26%,#fcaf32 62%,#fcaf32 62%,#fcaf32 83%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #e5e3da 0%,#e5c839 26%,#fcaf32 62%,#fcaf32 62%,#fcaf32 83%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e3da', endColorstr='#fcaf32',GradientType=0 ); /* IE6-9 */
 }
 
 #navigation {
@@ -98,7 +106,7 @@ body, html {
 }.DeviceTable tr:hover td{
 	
 }
-.DeviceTable tr:nth-child(odd){ background-color:#e6f7ff; }
+.DeviceTable tr:nth-child(odd){ background-color:#b6d9fb; }
 .DeviceTable tr:nth-child(even)    { background-color:#ffffff; }.DeviceTable td{
 	vertical-align:middle;
 	

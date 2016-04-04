@@ -8,7 +8,7 @@ Copyright (c) 1997-2006 Stuart Langridge, Joost de Valk.
 */
 
 /* Change these values */
-var image_path = "/images";
+var image_path = "images/";
 var image_up = "arrow-up.gif";
 var image_down = "arrow-down.gif";
 var image_none = "arrow-none.gif";
