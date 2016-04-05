@@ -37,6 +37,67 @@ JSONTest = function() {
     });
 };
 
+//Global array to store the device info
+var deviceInfoArray = [];
+
+function init()
+{
+	//Load DeviceList.xml
+	var xhttp = new XMLHttpRequest(); 	
+    xhttp.open("GET", "DeviceList.xml", false);
+    xhttp.send();
+    xmlDoc = xhttp.responseXML; 
+    
+    //Get the number of DeviceInfo elements
+    var deviceCount = xmlDoc.getElementsByTagName("DeviceInfo").length;
+    
+    //initialise global device info array
+    deviceInfoArray = [];
+    
+    //The following code is retrieving the device info and sticking it in an array of arrays 
+    //(fun eh?) 
+    //loop through the deviceinfo elements retrieving the specific information
+	for (var i = 0; i < deviceCount; i++)
+	{
+		//get the text with tag of ID
+		var _ID = xmlDoc.getElementsByTagName("ID")[i].childNodes[0].textContent;
+		//get the text with the tag of IP
+		var _IP = xmlDoc.getElementsByTagName("IP")[i].childNodes[0].textContent;
+		//get the text with the tag of Devicetype
+		var _DeviceType = xmlDoc.getElementsByTagName("DeviceType")[i].childNodes[0].textContent;
+		//create new array object with the elements in	
+		var arr = [_ID, _IP,_DeviceType];
+		//Use the loop index to insert the array collection just constructed into the outer deviceInfoArray
+		//array
+		deviceInfoArray[i] = arr;
+		//bit of debug code I've put in
+		alert("device array1 " + deviceInfoArray[i][0]);
+	}
+	
+	//bit more debug code
+	alert("DIA: " + deviceInfoArray.length);
+	
+	//The following code is trying to extract the information from the array of arrays just constructed
+	//(more fun eh?)
+	//all of this may want to go into a seperate function
+	//this is probabaly where the table would be created and paopulated as well
+	//Loop through the deviceInfoArray to extract info
+    for(var i=0; i < deviceInfoArray.length; i++)
+    {
+    	var dr = [];
+    	//get the device info using the index on the outer array
+    	dr = deviceInfoArray[i];	
+    	//debug code again
+    	alert(dr.length);
+    	//looping through the elements of the inner array using the length
+    	for (var j=0; j <dr.length; j++)
+    	{
+    		//debug, probably where the table will be organised\created?
+			alert(dr[j]);
+    	}
+    }
+}
+
 function StateRequest()
 { 
 	//the status information string
