@@ -57,48 +57,111 @@ function init()
     //The following code is retrieving the device info and sticking it in an array of arrays 
     //(fun eh?) 
     //loop through the deviceinfo elements retrieving the specific information
-	for (var i = 0; i < deviceCount; i++)
+	for (var deviceInfoArrIdx = 0; deviceInfoArrIdx < deviceCount; deviceInfoArrIdx++)
 	{
 		//get the text with tag of ID
-		var _ID = xmlDoc.getElementsByTagName("ID")[i].childNodes[0].textContent;
+		var _ID = xmlDoc.getElementsByTagName("ID")[deviceInfoArrIdx].childNodes[0].textContent;
 		//get the text with the tag of IP
-		var _IP = xmlDoc.getElementsByTagName("IP")[i].childNodes[0].textContent;
+		var _IP = xmlDoc.getElementsByTagName("IP")[deviceInfoArrIdx].childNodes[0].textContent;
 		//get the text with the tag of Devicetype
-		var _DeviceType = xmlDoc.getElementsByTagName("DeviceType")[i].childNodes[0].textContent;
+		var _DeviceType = xmlDoc.getElementsByTagName("DeviceType")[deviceInfoArrIdx].childNodes[0].textContent;
+		//get the text with the tag default status 
+		var _DeviceStatus = xmlDoc.getElementsByTagName("DefaultStatus")[deviceInfoArrIdx].childNodes[0].textContent;
 		//create new array object with the elements in	
-		var arr = [_ID, _IP,_DeviceType];
+		var arr = [_ID, _IP,_DeviceType, _DeviceStatus];
 		//Use the loop index to insert the array collection just constructed into the outer deviceInfoArray
 		//array
-		deviceInfoArray[i] = arr;
-		//bit of debug code I've put in
-		alert("device array1 " + deviceInfoArray[i][0]);
+		deviceInfoArray[deviceInfoArrIdx] = arr;
 	}
-	
-	//bit more debug code
-	alert("DIA: " + deviceInfoArray.length);
 	
 	//The following code is trying to extract the information from the array of arrays just constructed
 	//(more fun eh?)
 	//all of this may want to go into a seperate function
-	//this is probabaly where the table would be created and paopulated as well
+	//this is probabaly where the table would be created and populated as well
+	//get the table
+	var tableBody = document.getElementById("DeviceListTable");
+	
 	//Loop through the deviceInfoArray to extract info
-    for(var i=0; i < deviceInfoArray.length; i++)
+    for(var outerArrIdx = 0; outerArrIdx < deviceInfoArray.length; outerArrIdx++)
     {
-    	var dr = [];
-    	//get the device info using the index on the outer array
-    	dr = deviceInfoArray[i];	
-    	//debug code again
-    	alert(dr.length);
-    	//looping through the elements of the inner array using the length
-    	for (var j=0; j <dr.length; j++)
-    	{
-    		//debug, probably where the table will be organised\created?
-			alert(dr[j]);
-    	}
+		var rowContents = [];
+		//get the device info using the index on the outer array 
+		rowContents = deviceInfoArray[outerArrIdx];
+		//create the row element
+		var tr = document.createElement('TR');
+		//looping through the elements of the inner array using the length
+		for (var innerArrIdx=0; innerArrIdx <rowContents.length; innerArrIdx++)
+		{
+			//create the cells 
+			var td = document.createElement('TD');
+			//create an identifier for the cell
+			var IDAttr = '';
+			//create the name for the attr using the outer array index
+			switch(innerArrIdx)
+			{
+				case 0:
+					IDAttr = 'DeviceID' + outerArrIdx;
+					break;
+				case 1:
+					IDAttr = 'DeviceIP'+ outerArrIdx;
+					break;
+				case 2:
+					IDAttr = 'DeviceType'+ outerArrIdx;
+					break;
+				case 3:
+					IDAttr = 'DeviceStatus'+ outerArrIdx;
+					break;
+			}
+			//set the identifier
+			td.id = IDAttr;
+			//add the text from the xml file into the cell
+			td.appendChild(document.createTextNode(rowContents[innerArrIdx]));
+			//add the cell to the row
+			tr.appendChild(td);
+			
+		}
+		//add the row to the table
+		tableBody.appendChild(tr);
     }
 }
 
-function StateRequest()
+function UpdateState()
+{
+	//get table
+	//var table = document.getElementById("DeviceListTable");
+	//get rows from table
+	var rows = document.getElementsByTagName('TR');
+	//minus 1 for the headers
+	var rowsCount = (rows.length -1);
+	//loop round the rows
+	for(var tableRowIdx = 0; tableRowIdx < rowsCount; tableRowIdx++)
+	{
+		//get the device status cell
+		var statusCellID = 'DeviceStatus' + tableRowIdx;
+		//debug status cell id
+		//alert("SCID " + statusCellID);
+		//get the ip cell
+		var IPCellID = 'DeviceIP' + tableRowIdx;
+		//debug ip cell id
+		//alert("IPCID " + IPCellID);
+		//get the information in the ip cell
+		var CellInfo = document.getElementById(IPCellID).innerHTML;
+		//debug cell inner html
+		//alert("CellInfo " + CellInfo);
+		//create an empty array for status info
+		var statusInfo = [];
+		//the url string without the IP
+		var theUrl = "http://:8080/tvm/state/1.0/";
+		//split the url string out and stick the ip from the ip cell where required
+		var IPString = theUrl.substr(0, 7) + CellInfo + theUrl.substr(7);
+		//debug the IP string
+		//alert("IPS "+ IPString);
+		//get the status of the device using the construucted url string
+		statusInfo = StateRequest(IPString, statusCellID);
+	}
+}
+
+function StateRequest(IPString, statusCellID)
 { 
 	//the status information string
 	var statusInformation = "...waiting...";
@@ -108,7 +171,9 @@ function StateRequest()
 	
 	//the request and url
 	var xmlHttp = new XMLHttpRequest();
-	var theUrl = "http://192.168.204.45:8080/tvm/state/1.0/";
+	//var theUrl = "http://192.168.204.45:8080/tvm/state/1.0/";
+	//use the string of the url passed in
+	var theUrl = IPString;
 	
 	//The open asynchronous call (as it is set to true), which is needed for the callback 
 	// ready state change event handler
@@ -172,20 +237,18 @@ function StateRequest()
 				theBackground = "red";
 				statusInformation = "No Response"; 			
 		}
-	//The element to be updated with specified string and colour
-	document.getElementById('1-state').style.backgroundColor = theBackground;
-	document.getElementById('1-state').innerHTML = statusInformation;
-	
+		
+		//update the status cell with the information returned by the state request
+		document.getElementById(statusCellID).style.backgroundColor = theBackground;
+		document.getElementById(statusCellID).innerHTML = statusInformation;
 	};
 	
 	//the send for the request (debate on where this should be specifed! whether is should be before or after the ready state change event handler)
 	xmlHttp.send(null);
-
-	
-}	
-
+}
 //the function called within a timed interval, set at 5 secs for now
-setInterval(StateRequest, 5000);
+//setInterval(StateRequest, 5000);
+setInterval(UpdateState, 3000);
 	 //return xmlHttp;
 
  //<!--Script for getting the TVM raised Alarms Every 20 seconds-->    
