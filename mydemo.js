@@ -2,14 +2,6 @@
  * @author svye&hsingleton
  */
 
-//list of devices
-//var deviceList = [
-    //{ DeviceId: 'A-002', URL: 'http://192.168.204.45:8080/tvm/tvm/state/1.0/' },
-    //{ DeviceId: 'A-003', URL: 'http://192.168.204.45:8080/tvm/tvm/state/1.0/' },
-    //{ DeviceId: 'G-002', URL: 'http://192.168.204.45:8080/tvm/tvm/state/1.0/' },
-    //{ DeviceId: 'G-003', URL: 'http://192.168.204.45:8080/tvm/tvm/state/1.0/' },
-//];
-
 //<!--Script for Posting EMS Login Request-->
 JSONTest = function() {
 
@@ -127,8 +119,6 @@ function init()
 
 function UpdateState()
 {
-	//get table
-	//var table = document.getElementById("DeviceListTable");
 	//get rows from table
 	var rows = document.getElementsByTagName('TR');
 	//minus 1 for the headers
@@ -138,25 +128,17 @@ function UpdateState()
 	{
 		//get the device status cell
 		var statusCellID = 'DeviceStatus' + tableRowIdx;
-		//debug status cell id
-		//alert("SCID " + statusCellID);
 		//get the ip cell
 		var IPCellID = 'DeviceIP' + tableRowIdx;
-		//debug ip cell id
-		//alert("IPCID " + IPCellID);
 		//get the information in the ip cell
 		var CellInfo = document.getElementById(IPCellID).innerHTML;
-		//debug cell inner html
-		//alert("CellInfo " + CellInfo);
 		//create an empty array for status info
 		var statusInfo = [];
 		//the url string without the IP
 		var theUrl = "http://:8080/tvm/state/1.0/";
 		//split the url string out and stick the ip from the ip cell where required
 		var IPString = theUrl.substr(0, 7) + CellInfo + theUrl.substr(7);
-		//debug the IP string
-		//alert("IPS "+ IPString);
-		//get the status of the device using the construucted url string
+		//get the status of the device using the construucted url string and pass in the cell id to update
 		statusInfo = StateRequest(IPString, statusCellID);
 	}
 }
@@ -171,7 +153,6 @@ function StateRequest(IPString, statusCellID)
 	
 	//the request and url
 	var xmlHttp = new XMLHttpRequest();
-	//var theUrl = "http://192.168.204.45:8080/tvm/state/1.0/";
 	//use the string of the url passed in
 	var theUrl = IPString;
 	
@@ -246,10 +227,10 @@ function StateRequest(IPString, statusCellID)
 	//the send for the request (debate on where this should be specifed! whether is should be before or after the ready state change event handler)
 	xmlHttp.send(null);
 }
+
 //the function called within a timed interval, set at 5 secs for now
-//setInterval(StateRequest, 5000);
-setInterval(UpdateState, 3000);
-	 //return xmlHttp;
+setInterval(UpdateState, 5000);
+
 
  //<!--Script for getting the TVM raised Alarms Every 20 seconds-->    
     //setInterval(function(){	
