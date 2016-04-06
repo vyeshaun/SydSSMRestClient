@@ -4,20 +4,24 @@
 		<ID>A-002</ID>
 		<IP>192.168.204.45</IP>
 		<DeviceType>Astreo</DeviceType>
+		<DefaultStatus>Waiting...</DeviceStatus>
 	</DeviceInfo>
 	<DeviceInfo>
 		<ID>A-003</ID>
 		<IP>192.168.204.47</IP>
 		<DeviceType>Astreo</DeviceType>
+		<DefaultStatus>Waiting...</DeviceStatus>
 	</DeviceInfo>
 	<DeviceInfo>
 		<ID>G-002</ID>
 		<IP>192.168.204.46</IP>
 		<DeviceType>Galexio</DeviceType>
+		<DefaultStatus>Waiting...</DeviceStatus>
 	</DeviceInfo>
 	<DeviceInfo>
 		<ID>G-003</ID>
 		<IP>192.168.204.48</IP>
 		<DeviceType>Galexio</DeviceType>
+		<DefaultStatus>Waiting...</DeviceStatus>
 	</DeviceInfo>	
 </DeviceList>
