@@ -170,7 +170,7 @@ function StateRequest(IPString, statusCellID)
 			//check request string length, if greater than 0, then it has something in it so parse accordingly
 			if(xmlHttp.responseText.length > 0)
 			{
-				var burglary = xmlHttp.responseText.indexOf("\"\burglary\"\:true",0);
+				var burglary = xmlHttp.responseText.indexOf("\"burglary\":true",0);
 				if(burglary != -1) 
 				{
 					theBackground = "red";
@@ -178,7 +178,7 @@ function StateRequest(IPString, statusCellID)
 				}
 				else
 				{
-					var outOfOrder = xmlHttp.responseText.indexOf("\"\outOfOrder\"\:true",0);
+					var outOfOrder = xmlHttp.responseText.indexOf("\"outOfOrder\":true",0);
 					if(outOfOrder != -1)
 					{
 						theBackground = "red";
@@ -186,7 +186,7 @@ function StateRequest(IPString, statusCellID)
 					}
 					else 
 					{
-						var degraded = xmlHttp.responseText.indexOf("\"\degraded\"\:true",0);
+						var degraded = xmlHttp.responseText.indexOf("\"degraded\":true",0);
 						if(degraded != -1)
 						{
 							theBackground = "orange";
