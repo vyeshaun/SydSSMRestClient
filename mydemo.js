@@ -211,7 +211,7 @@ function StateRequest(IPString, statusCellID)
 		{
 			//request has not returned ready and ok state so display error
 			theBackground = "red";
-			statusInformation = "Not Ready State"; 
+			statusInformation = "Disconnected/Not Ready"; 
 		}
 		if (xmlHttp.readyState == null)
 		{

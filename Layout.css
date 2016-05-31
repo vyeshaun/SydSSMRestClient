@@ -11,6 +11,7 @@ body, html {
     width: 1080px;
     height: auto;
 	margin: auto;
+	position:relative;
 }
 
 #header {
@@ -55,12 +56,19 @@ body, html {
 	text-align:center;
 	margin-top: 15px;
 	padding: 0px;
-
+}
+#operationalMenu {
+	width:auto;
+	height:auto;
+	position:relative;
+	float:left;
 }
 .DeviceTable {
 	margin:0px;padding:0px;
 	width:1080px;
 	border:1px solid #000000;
+	position:relative;
+	float:left;
 	
 	-moz-border-radius-bottomleft:2px;
 	-webkit-border-bottom-left-radius:2px;
@@ -115,7 +123,7 @@ body, html {
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:5px;
-	font-size:10px;
+	font-size:15px;
 	font-family:Arial;
 	font-weight:normal;
 	color:#000000;
@@ -161,14 +169,6 @@ body, html {
 }
 #1-state{
 	vertical-align:middle;
-}
-#operationalMenu {
-	width:auto;
-	height:auto;
-	margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 0px;
-    margin-left: 0px;
 }
 .mainButton {
 	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
